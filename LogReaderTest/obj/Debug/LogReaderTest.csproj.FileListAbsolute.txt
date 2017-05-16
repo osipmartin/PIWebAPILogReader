@@ -1,0 +1,8 @@
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\bin\Debug\LogReaderTest.exe.config
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\bin\Debug\LogReaderTest.exe
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\bin\Debug\LogReaderTest.pdb
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\bin\Debug\PIWebAPILogReader.dll
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\bin\Debug\PIWebAPILogReader.pdb
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\obj\Debug\LogReaderTest.csprojResolveAssemblyReference.cache
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\obj\Debug\LogReaderTest.exe
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\LogReaderTest\obj\Debug\LogReaderTest.pdb

@@ -1,0 +1,5 @@
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogReader\bin\Debug\PIWebAPILogReader.dll
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogReader\bin\Debug\PIWebAPILogReader.pdb
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogReader\obj\Debug\PIWebAPILogReader.dll
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogReader\obj\Debug\PIWebAPILogReader.pdb
+c:\users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogReader\obj\Debug\PIWebAPILogReader.csprojResolveAssemblyReference.cache
