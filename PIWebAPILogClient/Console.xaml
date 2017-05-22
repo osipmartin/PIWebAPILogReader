@@ -10,7 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="216" Margin="10,10,0,0" VerticalAlignment="Top" Width="472" RenderTransformOrigin="-0.699,-0.214"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="216" Margin="10,10,0,0" VerticalAlignment="Top" Width="472" RenderTransformOrigin="-0.699,-0.214" FontFamily="Consolas"/>
         <Button x:Name="Close" Content="Close" HorizontalAlignment="Left" Margin="165,238,0,0" VerticalAlignment="Top" Width="170" Click="Close_Click"/>
 
     </Grid>

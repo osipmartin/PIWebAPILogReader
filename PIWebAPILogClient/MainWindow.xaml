@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PIWebAPILogClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="374" Width="672">
+        Title="MainWindow" Height="374" Width="672" Loaded="AppLoaded">
     <Grid Margin="0,0,0,-6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,9 +26,10 @@
             </StackPanel>
         </Button>
 
-        <Button x:Name="StartWatchButton" Content="Start Watch" HorizontalAlignment="Left" Margin="207,262,0,0" VerticalAlignment="Top" Width="74" Click="StartWatch" Grid.Column="1" IsEnabled="False" Height="22"/>
-        <Button x:Name="StopWatchButton" Content="Stop Watch" HorizontalAlignment="Left" Margin="207,297,0,0" VerticalAlignment="Top" Width="75" Click="StopWatch" Grid.Column="1" IsEnabled="False" Height="22"/>
+        <Button x:Name="StartWatchButton" Content="Start Watch" HorizontalAlignment="Left" Margin="60,297,0,0" VerticalAlignment="Top" Width="74" Click="StartWatch" Grid.Column="1" IsEnabled="False" Height="22"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="207,297,0,0" VerticalAlignment="Top" Width="75" Click="Cancel" Grid.Column="1" IsEnabled="False" Height="22"/>
         <Button x:Name="ParseButton" Content="Parse" HorizontalAlignment="Left" Margin="59,262,0,0" VerticalAlignment="Top" Width="75" Click="Parse" IsEnabled="False" Grid.Column="1" Height="22" RenderTransformOrigin="-0.053,0.727"/>
+        <Label x:Name="Processing" Content="" HorizontalAlignment="Left" Margin="207,259,0,0" VerticalAlignment="Top" Width="75" FontSize="11" Grid.Column="1" Height="25"/>
 
         <Label x:Name="label1_Copy3" Content="PI Web API Machine Name" HorizontalAlignment="Left" Margin="60,125,0,0" VerticalAlignment="Top" Width="194" FontSize="11" Grid.Column="1" Height="25"/>
         <TextBox x:Name="MachineName" HorizontalAlignment="Left" Height="23" Margin="60,152,0,0" TextWrapping="NoWrap" AcceptsReturn="False" VerticalAlignment="Top" Width="222" IsEnabled="False" Grid.Column="1"/>

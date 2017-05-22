@@ -60,10 +60,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AFWriter.cs" />
     <Compile Include="Console.xaml.cs">
       <DependentUpon>Console.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsoleWriter.cs" />
     <Compile Include="DropdownOption.cs" />
+    <Compile Include="OutputWriter.cs" />
+    <Compile Include="TextFileWriter.cs" />
     <Page Include="Console.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

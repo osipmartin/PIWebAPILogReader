@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompleteQueryWrittenEventArgs.cs" />
     <Compile Include="LogQueryBuilder.cs" />
     <Compile Include="LogReader.cs" />
     <Compile Include="LogReaderFactory.cs" />

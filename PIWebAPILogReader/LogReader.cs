@@ -4,6 +4,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -13,7 +14,7 @@ namespace PIWebAPI.LogReader
 	{
 		private EventLogQuery elq;
 		private EventLogWatcher watcher;
-		private Dictionary<string, Query> results;
+		public event EventHandler<CompleteQueryWrittenEventArgs> CompleteQueryWrittenEvent;
 
 		private LogReader() { }
 
@@ -23,61 +24,77 @@ namespace PIWebAPI.LogReader
 			}
 			else {
 				elq = new EventLogQuery(path, PathType.LogName, query);
+				server = server.Length < 1 ? "." : server; 
 				if (server != ".") {
 					EventLogSession session = new EventLogSession(server);
 					elq.Session = session;
 				}
 			}
-			results = new Dictionary<string, Query>();
 		}
 
 		/// <summary>
-		/// Start watching the log for new entries. Results of the watch can be retrieved via GetCurrentWatchResults() or EndWatch()
+		/// 
 		/// </summary>
-		/// <param name="callback">Specify a second callback</param>
-		public void StartWatch(EventHandler<EventRecordWrittenEventArgs> callback = null) {
-			results.Clear();
-
-			watcher = new EventLogWatcher(elq);
-			watcher.EventRecordWritten += (obj, arg) =>
-			{
-				ParseEventRecord(arg.EventRecord);
-			};
+		/// <returns>Did the watch start successfully?</returns>
+		public bool StartWatch() {
 			
-			if(callback != null) {
-				watcher.EventRecordWritten += callback;
+			Dictionary<string,Query> result = new Dictionary<string, Query>();
+			try {
+				watcher = new EventLogWatcher(elq);
+				watcher.EventRecordWritten += (obj, arg) =>
+				{
+					ParseEventRecord(arg.EventRecord, result);
+				};
+			
+				watcher.Enabled = true;
+				return true;
 			}
-
-			watcher.Enabled = true;
+			catch( EventLogReadingException e) {
+				watcher = null;
+				Console.WriteLine("Error reading the log: {0}", e.Message);
+				return false;
+			}
+			catch( EventLogException e) {
+				watcher = null;
+				Console.WriteLine("Error reading the log: {0}", e.Message);
+				return false;
+			}
+			catch( Exception e) {
+				watcher = null;
+				Console.WriteLine("Error reading the log: {0}", e.Message);
+				return false;
+			}
 		}
 
-		public Dictionary<string, Query> GetCurrentWatchResults() {
-			return results;
-		}
-
-		public Dictionary<string, Query> EndWatch() {
+		public void EndWatch() {
 			watcher.Dispose();
-			return GetCurrentWatchResults();
 		}
 
 		/// <summary>
 		/// Get entries that match the LogReader query parmaters from an unwatched log 
 		/// </summary>
 		/// <returns></returns>
-		public Dictionary<string, Query> ReadLog() {
-			results.Clear();
+		public void ReadLog(Dictionary<string, Query> result, CancellationTokenSource ct = null) {			
 			EventLogReader logReader = new EventLogReader(elq);
 			EventRecord entry = logReader.ReadEvent();
 			while (entry != null)
 			{
-				ParseEventRecord(entry);
-				entry = logReader.ReadEvent();
-			}
+				if( ct != null && ct.Token.IsCancellationRequested ){
+					break;
+				}
 
-			return results;
+				ParseEventRecord(entry, result);
+				entry = logReader.ReadEvent();
+			}				
 		}
 
-		private void ParseEventRecord(EventRecord e) {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="e"></param>
+		/// <param name="result"></param>
+		/// <returns>returns a query when a complete record has just been written, otherwise returns null</returns>
+		private void ParseEventRecord(EventRecord e, Dictionary<string, Query> result) {
 			int msgid = e.Id;
 
 			DateTime? nullable_d = e.TimeCreated;
@@ -88,6 +105,7 @@ namespace PIWebAPI.LogReader
 			//11 is begin query
 			//12 is end query
 
+			//parse log into XML doc in order to get the id for the request
 			XDocument doc = XDocument.Parse(e.ToXml());
 			var s = from n in doc.Descendants()
 					where (string)n.LastAttribute == "requestId"
@@ -96,30 +114,33 @@ namespace PIWebAPI.LogReader
 
 			if (msgid == 11)
 			{
-				if (results.ContainsKey(id))
+				if (result.ContainsKey(id))
 				{
-					results[id].StartTime = d;
+					result[id].StartTime = d;
+					CompleteQueryWrittenEvent?.Invoke(this, new CompleteQueryWrittenEventArgs { query = result[id] });
 				}
 				else
 				{
-					results.Add(id, new Query(id, d));
+					result.Add(id, new Query(id, d));
 				}
 			}
 			else
 			{
-				if (results.ContainsKey(id))
+				if (result.ContainsKey(id))
 				{
-					results[id].EndTime = d;
+					result[id].EndTime = d;
+					CompleteQueryWrittenEvent?.Invoke(this, new CompleteQueryWrittenEventArgs { query = result[id] });
 				}
 				else
 				{
-					results.Add(id, new Query(id, d));
+					result.Add(id, new Query(id, d));
 				}
 			}			
 		}
 
 		public void Dispose()
 		{
+			CompleteQueryWrittenEvent = null;
 			((IDisposable)watcher)?.Dispose();
 		}
 	}

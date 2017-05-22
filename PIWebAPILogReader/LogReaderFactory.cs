@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PIWebAPI.LogReader
 {
+	/// <summary>
+	/// Create a LogReader
+	/// </summary>
 	public static class LogReaderFactory
     {
 		public static LogReader CreateSavedLogReader(string path, string query = "*[System/Level=4]") {

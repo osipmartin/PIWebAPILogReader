@@ -23,7 +23,7 @@ namespace PIWebAPI.LogReader
 
 		public override string ToString()
 		{
-			return $"{id} : {StartTime:yy-MMM-dd:hh:mm:ss}  {EndTime:yy-MMM-dd:hh:mm:ss} ({Duration.Seconds})";
+			return $"{id} :: {StartTime:yyyy-MMM-dd hh:mm:ss} :: {EndTime:yyyy-MMM-dd hh:mm:ss} :: ({Duration.Seconds})";
 		}
 	}
 }

@@ -8,8 +8,16 @@ namespace PIWebAPI.LogReader
 {
 	public static class LogQueryBuilder
 	{
-		public static string Build(	List<int> levels = null, 
-									List<int> eventids = null, 
+		/// <summary>
+		/// Build a query that be passed to the LogReader class
+		/// </summary>
+		/// <param name="levels"></param>
+		/// <param name="eventids"></param>
+		/// <param name="startTime"></param>
+		/// <param name="endTime"></param>
+		/// <returns></returns>
+		public static string Build(	IList<int> levels = null,
+									IList<int> eventids = null, 
 									DateTime startTime = default(DateTime), 
 									DateTime endTime = default(DateTime)) {
 
