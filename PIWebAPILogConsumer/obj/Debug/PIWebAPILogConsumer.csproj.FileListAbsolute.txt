@@ -1,9 +1,0 @@
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\bin\Debug\PIWebAPILogConsumer.exe.config
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\bin\Debug\PIWebAPILogConsumer.exe
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\bin\Debug\PIWebAPILogConsumer.pdb
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\obj\Debug\PIWebAPILogConsumer.csprojResolveAssemblyReference.cache
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\obj\Debug\PIWebAPILogConsumer.Form1.resources
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\obj\Debug\PIWebAPILogConsumer.Properties.Resources.resources
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\obj\Debug\PIWebAPILogConsumer.csproj.GenerateResource.Cache
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\obj\Debug\PIWebAPILogConsumer.exe
-C:\Users\pmartin\documents\visual studio 2015\Projects\PIWebAPILogReader\PIWebAPILogConsumer\obj\Debug\PIWebAPILogConsumer.pdb
